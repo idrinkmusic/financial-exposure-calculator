@@ -8,7 +8,7 @@ const Form = props => {
   return (
     <form onSubmit={handleSubmit}>
       <Field
-        name="id"
+        name="personId"
         type="text"
         component={InputField}
         label="PersonId"
