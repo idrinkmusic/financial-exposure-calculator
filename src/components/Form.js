@@ -1,33 +1,16 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { required, maxLength, maxLength10, number } from "../utils/validation";
+import { required, maxLength10, number } from "../utils/validation";
+import InputField from "./InputField";
 
-const renderField = ({
-  input,
-  label,
-  placeholder,
-  type,
-  meta: { touched, error, warning }
-}) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} placeholder={placeholder} type={type} />
-      {touched &&
-        ((error && <span>{error}</span>) ||
-          (warning && <span>{warning}</span>))}
-    </div>
-  </div>
-);
-
-const FieldLevelValidationForm = props => {
+const Form = props => {
   const { handleSubmit, pristine, reset, invalid, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
       <Field
         name="id"
         type="text"
-        component={renderField}
+        component={InputField}
         label="PersonId"
         placeholder="Type PersonId here..."
         validate={[required, number, maxLength10]}
@@ -46,5 +29,5 @@ const FieldLevelValidationForm = props => {
 };
 
 export default reduxForm({
-  form: "fieldLevelValidation" // a unique identifier for this form
-})(FieldLevelValidationForm);
+  form: "form"
+})(Form);
