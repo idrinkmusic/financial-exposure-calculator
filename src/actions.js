@@ -1,10 +1,18 @@
-export const GET_PERSON_DETAILS = "GET_PERSON_DETAILS";
+export const REQUEST_PERSON_DETAILS = "REQUEST_PERSON_DETAILS";
+export const RECEIVE_PERSON_DETAILS = "RECEIVE_PERSON_DETAILS";
 export const GET_FACILITY_DETAILS = "GET_FACILITY_DETAILS";
 export const GET_EXPOSURE_DETAILS = "GET_EXPOSURE_DETAILS";
 
-const getPersonDetails = person => {
+export const requestPersonDetails = person => {
   return {
-    type: GET_PERSON_DETAILS,
+    type: REQUEST_PERSON_DETAILS,
+    person
+  };
+};
+
+export const receivePersonDetails = person => {
+  return {
+    type: RECEIVE_PERSON_DETAILS,
     person
   };
 };
@@ -32,15 +40,15 @@ const fetchFacilityDetails = facility => {
 };
 
 const fetchExposureDetails = exposure => {
-  return fetch(`api/person/${person}`);
+  return fetch(`api/person/${exposure}`);
 };
 
-const calculateExposure = person => {
+export const calculateExposure = person => {
   return dispatch => {
-    dispatch(getPersonDetails(person));
+    dispatch(requestPersonDetails(person));
 
-    return fetch(`api/person/${person}`)
+    return fetchPersonDetails()
       .then(response => response.json())
-      .then(json => dispatch(getFacilityDetails(facility, json)));
+      .then(json => dispatch(getFacilityDetails(json.val1, json)));
   };
 };

@@ -1,22 +1,38 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Form from "../components/Form";
+import {
+  requestPersonDetails,
+  fetchPosts,
+  calculateExposure
+} from "../actions";
 
 class App extends Component {
-  submit = values => {
-    // Do something with the form values
-    console.log(values);
+  handleSubmit = values => {
+    const { dispatch, selectedPersonId } = this.props;
+
+    dispatch(calculateExposure(values.personId));
   };
 
   render() {
+    const { selectedPersonId } = this.props;
     return (
       <div className="App">
         <div className="container">
-          <h1 className="text-center">Calculate Person Financial Exposure</h1>
-          <Form onSubmit={this.submit} />
+          <h1 className="text-center">Financial Exposure Calculator</h1>
+          <Form onSubmit={this.handleSubmit} />
         </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  const { selectedPersonId } = state;
+
+  return {
+    selectedPersonId
+  };
+};
+
+export default connect(mapStateToProps)(App);
