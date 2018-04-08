@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FieldLevelValidationForm from "../components/Form";
+import Form from "../components/Form";
 
 class App extends Component {
   submit = values => {
@@ -12,7 +12,7 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <h1 className="text-center">Calculate Person Financial Exposure</h1>
-          <FieldLevelValidationForm onSubmit={this.submit} />
+          <Form onSubmit={this.submit} />
         </div>
       </div>
     );
