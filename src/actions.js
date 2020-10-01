@@ -5,7 +5,7 @@ export const RECEIVE_FACILITY_DETAILS = "RECEIVE_FACILITY_DETAILS";
 export const REQUEST_EXPOSURE_DETAILS = "REQUEST_EXPOSURE_DETAILS";
 export const RECEIVE_EXPOSURE_DETAILS = "RECEIVE_EXPOSURE_DETAILS";
 
-const requestPersonDetails = personId => {
+const requestPersonDetails = (personId) => {
   return {
     type: REQUEST_PERSON_DETAILS,
     personId
